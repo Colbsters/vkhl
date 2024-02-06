@@ -18,9 +18,10 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301
 // USA
 
-#ifndef VKHL_H
-#define VKHL_H
+#ifndef VKHL_HPP
+#define VKHL_HPP
 
 #include "Defer.hpp"
+#include "Instance.hpp"
 
 #endif

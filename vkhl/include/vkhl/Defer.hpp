@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef VKHL_DEFER_H
-#define VKHL_DEFER_H
+#ifndef VKHL_DEFER_HPP
+#define VKHL_DEFER_HPP
 
 #include <utility>
 #include <optional>

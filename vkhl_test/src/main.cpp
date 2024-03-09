@@ -9,13 +9,12 @@ std::pair<const char*, vkhl::FeatureRequirement> g_instanceLayers[] = {
 
 int main()
 {
-
 	VkInstance instance;
 	vkhl::InstanceInfo instanceInfo;
 
 	vkhl::GetInstanceInfo(&instanceInfo);
-	std::printf("Version: %i.%i.%i\nLayers:\n",
-		VK_API_VERSION_MAJOR(instanceInfo.apiVersion), VK_API_VERSION_MINOR(instanceInfo.apiVersion), VK_API_VERSION_PATCH(instanceInfo.apiVersion));
+	auto instVersion = vkhl::MakeVersionStruct(instanceInfo.apiVersion);
+	std::printf("Version: %i.%i.%i\nLayers:\n", instVersion.major, instVersion.minor, instVersion.patch);
 	
 	for (auto layer : instanceInfo.layers)
 		std::printf("\t%s\n", layer.c_str());
@@ -36,6 +35,25 @@ int main()
 	vkhl::Defer deferDestroyInst([instance](){
 			vkhl::DestroyInstance(instance);
 		});
+
+	vkhl::PhysicalDeviceQueueFamilySelectionInfo queueInfos[2] = {
+		{
+			.graphics = vkhl::RequireFeature,
+			.compute = vkhl::RequireFeature,
+			.transfer = vkhl::RequireFeature
+		},
+		{
+			.transfer = vkhl::RequireFeature
+		}
+	};
+
+	VkPhysicalDevice physicalDevice;
+	uint32_t queueFamilyIndices[2];
+	vkhl::PhysicalDeviceInfo physicalDeviceInfo;
+
+	vkhl::SelectPhyicalDevice(instance, {
+			.queueFamilyInfos = queueInfos,
+		}, &physicalDevice, queueFamilyIndices, &physicalDeviceInfo);
 
 	return 0;
 }

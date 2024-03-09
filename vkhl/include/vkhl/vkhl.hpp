@@ -23,5 +23,6 @@
 
 #include "Defer.hpp"
 #include "Instance.hpp"
+#include "PhysicalDevice.hpp"
 
 #endif

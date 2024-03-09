@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.12)
 
-add_library(vkhl "src/vkhl.cpp" "include/vkhl/Definitions.h" "include/vkhl/Error.hpp" "include/vkhl/Globals.hpp" "include/vkhl/Defer.hpp" "include/vkhl/Instance.hpp" "include/vkhl/Error.hpp" "include/vkhl/Globals.hpp")
+add_library(vkhl "src/vkhl.cpp" "include/vkhl/vkhl.hpp" "include/vkhl/Definitions.h" "include/vkhl/Error.hpp" "include/vkhl/Globals.hpp" "include/vkhl/Defer.hpp" "include/vkhl/Instance.hpp" "include/vkhl/Common.hpp" "include/vkhl/PhysicalDevice.hpp")
 
 set_target_properties(vkhl PROPERTIES CXX_STANDARD 20)
 

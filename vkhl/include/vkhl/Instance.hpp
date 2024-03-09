@@ -8,28 +8,21 @@
 #include <span>
 #include <utility>
 #include <optional>
+#include <vector>
 
 #include "Definitions.h"
 #include "Globals.hpp"
 #include "Error.hpp"
-#include "Enums.hpp"
+#include "Common.hpp"
 
 #ifdef VKHL_INCLUDE_IMPLEMENTION
 
 #include <vulkan/vk_enum_string_helper.h>
-#include <vector>
 
 #endif // VKHL_INCLUDE_IMPLEMENTION
 
 namespace vkhl
 {
-	using Version = uint32_t;
-
-	inline Version MakeVersion(uint8_t major, uint8_t minor, uint16_t patch = 0, uint8_t variant = 0)
-	{
-		return VK_MAKE_API_VERSION(variant, major, minor, patch);
-	}
-
 	struct InstanceCreateInfo
 	{
 		const char* appName;
@@ -53,7 +46,7 @@ namespace vkhl
 	VKHL_INLINE SmartResult CreateInstance(const InstanceCreateInfo& createInfo, VkInstance* instanceOut, InstanceInfo* infoOut = nullptr);
 	
 	// infoOut must point to an InstanceInfo
-	VKHL_INLINE VkResult GetInstanceInfo(InstanceInfo* infoOut);
+	VKHL_INLINE SmartResult GetInstanceInfo(InstanceInfo* infoOut);
 
 	// Calls vkDestroyInstance with global allocation callbacks
 	VKHL_INLINE void DestroyInstance(VkInstance instance);
@@ -260,7 +253,7 @@ namespace vkhl
 		return VK_SUCCESS;
 	}
 
-	VKHL_INLINE VkResult GetInstanceInfo(InstanceInfo* infoOut)
+	VKHL_INLINE SmartResult GetInstanceInfo(InstanceInfo* infoOut)
 	{
 		VkResult result = VK_SUCCESS;
 

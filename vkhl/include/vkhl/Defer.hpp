@@ -9,7 +9,7 @@
 
 namespace vkhl
 {
-	template<typename FuncT, typename ArgT>
+	template<typename ArgT, typename FuncT = void(*)(ArgT)>
 	struct FuncArgBinding
 	{
 		FuncT func;

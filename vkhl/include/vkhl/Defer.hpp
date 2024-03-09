@@ -12,8 +12,8 @@ namespace vkhl
 	template<typename ArgT, typename FuncT = void(*)(ArgT)>
 	struct FuncArgBinding
 	{
-		FuncT func;
 		ArgT arg;
+		FuncT func;
 
 		void operator()() {
 			func(arg);
